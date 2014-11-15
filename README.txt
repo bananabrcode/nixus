@@ -1,0 +1,3 @@
+ABSTRACT:
+	NIXUS stands for *NIX Update System. The system main goal is to provide a tool for system administrators to help them automating the update proccess of their *nix servers and workstations that supports some of the major *nix package managers, like YUM and APT. The system also provides the ability to verify and monitor the current state of its managed assets regarding their installed software versions.
+	NIXUS also gives system administrators the ability to group managed machines and apply different update rules to these based on the groups it belongs. This way its possible to apply system patches in a small pre-selected asset group before installing the updates in the rest of the managed machines.
