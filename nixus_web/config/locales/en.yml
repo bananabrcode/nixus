@@ -20,10 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  errors:
+    messages:
+      blank: '%{attribute} is a required value!'
+      inclusion: '%{value} is not a valid value for %{value}!'
   activerecord:
-    errors:
-      models:
-        operating_system:
-          attributes:
-            cpu_architecture:
-              inclusion: '%{value} is not a valid CPU architecture.'
+    attributes:
+      operatingsystem:
+        cpuarchitecture: 'cpu architecture'
+    
