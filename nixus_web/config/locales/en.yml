@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    errors:
+      models:
+        operating_system:
+          attributes:
+            cpu_architecture:
+              inclusion: '%{value} is not a valid CPU architecture.'
