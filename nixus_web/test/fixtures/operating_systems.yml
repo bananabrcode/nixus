@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  displayName: MyString
+  cpeName: MyString
+  cpuArchitecture: MyString
+
+two:
+  displayName: MyString
+  cpeName: MyString
+  cpuArchitecture: MyString

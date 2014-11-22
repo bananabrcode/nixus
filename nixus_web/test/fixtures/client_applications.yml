@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  api_guid: MyString
+  hostname: MyString
+  info_updated_at: 2014-11-21 21:32:55
+  approval_status: 
+
+two:
+  api_guid: MyString
+  hostname: MyString
+  info_updated_at: 2014-11-21 21:32:55
+  approval_status: 
