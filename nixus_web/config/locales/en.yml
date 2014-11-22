@@ -23,6 +23,7 @@ en:
   errors:
     messages:
       blank: '%{attribute} is a required value!'
+      invalid: 'invalid value for %{attribute}!'
       inclusion: '%{value} is not a valid value for %{value}!'
   activerecord:
     attributes:
