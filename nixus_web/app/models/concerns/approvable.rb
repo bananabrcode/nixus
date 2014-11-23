@@ -3,11 +3,13 @@ require 'nixus_api'
 require 'nixus_validation'
 require 'nixus_security'
 
-module ApiAuthenticable
+module Approvable
 	extend ActiveSupport::Concern
 	
 	included do
 		#validations
+		validates :operating_system_id,
+			presence: true
 		validates :approval_status,
                 	presence: true,
 	                inclusion: { :in => NixusValidation::ValidApprovalStatuses, :message => :inclusion, unless: 'approval_status.blank?' }

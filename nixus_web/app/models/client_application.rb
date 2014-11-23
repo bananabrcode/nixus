@@ -4,7 +4,7 @@ class ClientApplication < ActiveRecord::Base
 	#INCLUSIONS & EXTENSIONS
 	include ApiAuthenticable
 	include Approvable
-	
+
 	#CLASS MACROS
 	#validations:
 	#scopes:

@@ -17,9 +17,9 @@ module ApiAuthenticable
 	                format: { :with => /[A-z0-9]{#{NixusSecurity::MD5::SIZE}}/, :message => :invalid, unless: 'api_secret_hash.blank?'}
 
 		#callbacks
-		after_initialize :set_api_id
-	end
-
+		after_initialize :set_api_id	
+	end	
+	
 	private
 	def set_api_id()
 		self.api_id ||= NixusAPI::generate_new_id()
