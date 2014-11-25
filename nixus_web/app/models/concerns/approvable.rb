@@ -8,8 +8,6 @@ module Approvable
 	
 	included do
 		#validations
-		validates :operating_system_id,
-			presence: true
 		validates :approval_status,
                 	presence: true,
 	                inclusion: { :in => NixusValidation::ValidApprovalStatuses, :message => :inclusion, unless: 'approval_status.blank?' }
