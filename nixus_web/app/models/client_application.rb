@@ -7,6 +7,8 @@ class ClientApplication < ActiveRecord::Base
 
 	#CLASS MACROS
 	#validations:
+	validates :operating_system_id,
+		presence: { message: :blank }
 	#scopes:
 	#callbacks:
 	after_initialize :set_defaults

@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-centos6_x64:
+valid_x64:
   display_name: 'CentOS 6.x x64'
   cpe_name: 'cpe:2.3:o:centos:centos:6:*:*:*:*:*:*:*'
   cpu_architecture: 'x64'
 
-centos6_x86:
+valid_x86:
   display_name: 'CentOS 6.x x86'
   cpe_name: 'cpe:2.3:o:centos:centos:6:*:*:*:*:*:*:*'
   cpu_architecture: 'x86'

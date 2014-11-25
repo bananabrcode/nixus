@@ -25,9 +25,13 @@ en:
       blank: '%{attribute} is a required attribute!'
       invalid: 'invalid value for %{attribute}!'
       inclusion: '%{value} is not a valid value for %{attribute}!'
+      read_only: '%{attribute} is a read only attribute and cannot be changed!'
   activerecord:
     models:
       attributes:
-        operatingsystem:
+        operating_system:
           cpu_architecture: 'cpu architecture'
+        client_application:
+          operating_system_id:
+            blank: 'the operating system must be informed'
     

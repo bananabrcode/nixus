@@ -15,9 +15,9 @@ class ClientApplicationTest < ActiveSupport::TestCase
 	end
 	
 	test "Should not be able to alter the API id" do
-		client_app = ClientApplication.new()
-		client_app.api_id="somethingIsWrong!"
-		assert_not client_app.api_id == "somethingIsWrong!", "Was able to modify API id"
+		client_app = client_applications(:approved_client)
+		client_app.api_id="0"*NixusAPI::ID_SIZE
+		assert_not client_app.save, "Was able to modify API id"
 	end
 	
 	test "Approval status should be pending after initialization" do
@@ -31,8 +31,7 @@ class ClientApplicationTest < ActiveSupport::TestCase
 	end	
 
 	test "Should be saved if valid" do
-		client_app = ClientApplication.new()
-		client_app.operating_system = operating_systems(:centos6_x64)
+		client_app = client_applications(:valid_sample)
 		assert client_app.save, "Was not saved even with valid attributes"
 	end
 
