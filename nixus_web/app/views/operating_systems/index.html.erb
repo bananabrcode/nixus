@@ -1,0 +1,19 @@
+<h1>Operating Systems</h1>
+<table class="asset_list_table">
+  <th>Display Name</th>
+  <th>CPE Name</th>
+  <th>CPU Architecture</th>
+  <th/>
+  <% @operating_systems.each do |os|%>
+  <tr>
+    <td><%= link_to os.display_name, edit_operating_system_path(os) %></td>
+    <td><%= os.cpe_name%></td>
+    <td><%= os.cpu_architecture%></td>
+    <td><%= link_to t('.destroy'), operating_system_path(os),
+	:method => :delete,
+	:data => {:confirm => t('dialogs.destroy')} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to t('.new'), new_operating_system_path%>

@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>NixusWeb</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <title>NIXUS</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<header>
+		<div id="header-wrap">
+			<h1>NIXUS</h1>
+		</div>
+	</header>
+	<div id="content">
+		<div id="sidebar">
+			<div class="menu">
+				<h1 id="menu_header" >Menu</h1>
+				<h2>Configuration</h2>
+				<ul>
+					<li><%= link_to "Users", "#" %></li>
+				</ul>
+				<h2>Inventory</h2>
+				<ul>
+					<li><%= link_to "Operating Systems", operating_systems_path %></li>
+					<li><%= link_to "Package Managers", "#" %></li>
+					<li><%= link_to "Managed Hosts", "#" %></li>
+					<li><%= link_to "Host Groups", "#" %></li>
+				</ul>
+				<h1 id="menu_footer" ></h1>
+			</div>
+		</div>
+		<div id="displaybox">
+			<% if notice.present? %>
+				<p id="notice"><%= notice %> </p>
+			<% end %>
+			<% if alert.present? %>
+				<p id="alert"><%= alert %> </p>
+			<% end %>
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>

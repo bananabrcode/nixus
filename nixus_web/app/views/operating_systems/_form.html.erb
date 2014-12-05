@@ -1,0 +1,36 @@
+<% if @operating_system.errors.any? %>
+	<div id="error_explanation">
+		<p>
+			<%= t 'errors.messages.default' %>
+		</p>
+		<% @operating_system.errors[:base].each do |error| %>
+			<p><%= error %></p>
+		<% end %>
+	</div>
+<% end %>
+
+<%= form_for(@operating_system) do |f| %>
+	<p>
+		<%= f.label :display_name %>
+		<%= f.text_field :display_name %>
+		<%= error_tag @operating_system, :display_name%>
+	</p>
+	<p>
+		<%= f.label :cpe_name %>
+		<%= f.text_field :cpe_name %>
+		<%= error_tag @operating_system, :cpe_name %>
+	</p>
+	<p>
+		<%= f.label :cpu_architecture %>
+		<% if @operating_system.cpu_architecture.blank? %>
+		  <%= f.select "cpu_architecture", options_for_select(NixusValidation::ValidCpuArchitectures, NixusValidation::ValidCpuArchitectures[0]) %>
+		<% else %>
+		  <%= f.select "cpu_architecture", options_for_select(NixusValidation::ValidCpuArchitectures, @operating_system.cpu_architecture) %>
+		<% end %>
+		<%= error_tag @operating_system, :cpu_architecture %>
+	</p>
+	<p>
+		<%= f.submit nil, class: 'submit_button' %>
+	</p>
+<% end %>
+

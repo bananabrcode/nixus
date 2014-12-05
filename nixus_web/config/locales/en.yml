@@ -20,18 +20,50 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  operating_systems:
+    operating_system:
+      edit: 'Edit'
+      destroy: 'Delete'
+    index:
+      destroy: 'Delete'
+    new:
+      header: 'New operating system'
+    edit:
+      header: 'Edit operating system'
+    create:
+      success: 'Operating system successfully created!'
+    update:
+      success: 'Operating system successfully updated!'
+    destroy:
+      success: 'Operating system was successfully deleted!'
+  misc:
+    create: 'Create'
+    back: 'Return'
+    home: 'Home'
+    cancel: 'Cancel'
+    show: 'Show'
+    edit: 'Edit'
+    details: 'Details'
+    remove: 'Remove'
+  dialogs:
+    destroy: 'Are you sure you want to delete?'
   errors:
     messages:
+      default: 'Some errors were found, please verify'
       blank: '%{attribute} is a required attribute!'
       invalid: 'invalid value for %{attribute}!'
       inclusion: '%{value} is not a valid value for %{attribute}!'
       read_only: '%{attribute} is a read only attribute and cannot be changed!'
   activerecord:
     models:
-      attributes:
-        operating_system:
-          cpu_architecture: 'cpu architecture'
-        client_application:
-          operating_system_id:
-            blank: 'the operating system must be informed'
+      operating_system: 'operating system'
+      client_application: 'client application'
+    attributes:
+      operating_system:
+        cpu_architecture: 'cpu architecture'
+        display_name: 'display name'
+        cpe_name: 'cpe name'
+      client_application:
+        operating_system_id:
+          blank: 'the operating system must be informed'
     
