@@ -1,29 +1,24 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 valid_sample:
-  api_id: 'FEE2E04B12BD4957972A95735B6909A0'
-  hostname: 'approved.test.com'
+  hostname: 'valid.test.com'
   info_updated_at: 2014-11-21 21:32:55
   approval_status: 1
   operating_system: valid_x64
 
 pending_client:
-  api_id: 'FEE2E04B12BD4957972A95735B6909A7'
   hostname: 'pending.test.com'
   info_updated_at: 2014-11-21 21:32:55
   approval_status: 0
   operating_system: valid_x64
 
 approved_client:
-  api_id: 'FEE2E04B12BD4957972A95735B6909A8'
   hostname: 'approved.test.com'
   info_updated_at: 2014-11-21 21:32:55
   approval_status: 1
   operating_system: valid_x64
 
 unapproved_client:
-  api_id: 'FEE2E04B12BD4957972A95735B6909A9'
   hostname: 'unapproved.test.com'
   info_updated_at: 2014-11-21 21:32:55
   approval_status: -1
   operating_system: valid_x64
-

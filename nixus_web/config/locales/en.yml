@@ -60,7 +60,4 @@ en:
         cpu_architecture: 'cpu architecture'
         display_name: 'display name'
         cpe_name: 'cpe name'
-      client_application:
-        operating_system_id:
-          blank: 'the operating system must be informed'
     

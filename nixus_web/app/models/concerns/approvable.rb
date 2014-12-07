@@ -1,25 +1,36 @@
 require 'active_support/concern'
-require 'nixus_api'
-require 'nixus_validation'
-require 'nixus_security'
 
 module Approvable
 	extend ActiveSupport::Concern
 	
 	included do
-		#validations
-		validates :approval_status,
-                	presence: true,
-	                inclusion: { :in => NixusValidation::ValidApprovalStatuses, :message => :inclusion, unless: 'approval_status.blank?' }
-		#scopes:
-	        scope :approved, -> { where(approvalStatus: NixusValidation::ApprovalStatuses::APPROVED) }
-	        scope :pending, -> { where(approvalStatus: NixusValidation::ApprovalStatuses::PENDING) }
-	        scope :unapproved, -> { where(approvalStatus: NixusValidation::ApprovalStatuses::UNAPPROVED) }
-	end
+		#associations
+		has_one :approval, as: :approvable
 
-        #INSTANCE METHODS
-	#methods:
-	def approved?()
-                self.approval_status == NixusValidation::ApprovalStatuses::APPROVED
+		#callbacks
+                after_save :create_approval, on: :create
+                after_rollback :destroy_approval, on: :create
+
+		#scopes
+		scope :pending, -> {where(id: Approval.pending(self.name).pluck(:approvable_id))}
+		scope :approved, -> {where(id: Approval.approved(self.name).pluck(:approvable_id))}
+		scope :unapproved, -> {where(id: Approval.unapproved(self.name).pluck(:approvable_id))}
+	end
+	
+	def approve()
+                self.approval.status == NixusValidation::ApprovalStatuses::APPROVED
+        end
+
+        private
+
+        def create_approval()
+                app = Approval.new()
+                app.approvable = self
+                app.save!
+        end
+
+        def destroy_approval()
+                return if self.approval.nil?
+                self.approval.destroy
         end
 end
