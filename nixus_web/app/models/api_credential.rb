@@ -15,7 +15,8 @@ class ApiCredential < ActiveRecord::Base
 		presence: { message: :blank },
 		length: { :is => NixusAPI::ID_SIZE, unless: 'api_id.blank?' },
                 format: { :with => /[A-Z0-9]{#{NixusAPI::ID_SIZE}}/, :message => :invalid, unless: 'api_id.blank?'},
-                uniqueness: { unless: 'api_id.blank?' }
+                uniqueness: { unless: 'api_id.blank?' },
+		on: :create
 
         validates :api_secret_hash,
 		length: { :is => NixusAPI::SECRET_HASH_SIZE, unless: 'api_secret_hash.blank?' }

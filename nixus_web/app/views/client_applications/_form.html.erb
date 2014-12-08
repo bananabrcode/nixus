@@ -1,0 +1,21 @@
+<% if @client_application.errors.any? %>        
+	<div id="error_explanation">
+                <p>
+                        <%= t 'errors.messages.default' %>
+                </p>
+                <% @client_application.errors[:base].each do |error| %>
+                        <p><%= error %></p>
+                <% end %>
+        </div>
+<% end %>
+
+<%= form_for(@client_application) do |f| %>
+        <p>
+                <%= f.label :hostname %>
+                <%= f.text_field :hostname %>
+                <%= error_tag @client_application, :hostname %>
+        </p>
+        <p>
+                <%= f.submit nil, class: 'submit_button' %>
+        </p>
+<% end %>

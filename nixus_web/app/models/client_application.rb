@@ -6,8 +6,8 @@ class ClientApplication < ActiveRecord::Base
 	include Approvable
 
 	#validations:
-	validates :operating_system,
-		presence: { message: :blank }
+	#validates :operating_system,
+	#	presence: { message: :blank }
 
 	#associations:
 	belongs_to :operating_system

@@ -2,23 +2,19 @@
 valid_sample:
   hostname: 'valid.test.com'
   info_updated_at: 2014-11-21 21:32:55
-  approval_status: 1
   operating_system: valid_x64
 
 pending_client:
   hostname: 'pending.test.com'
   info_updated_at: 2014-11-21 21:32:55
-  approval_status: 0
   operating_system: valid_x64
 
 approved_client:
   hostname: 'approved.test.com'
   info_updated_at: 2014-11-21 21:32:55
-  approval_status: 1
   operating_system: valid_x64
 
 unapproved_client:
   hostname: 'unapproved.test.com'
   info_updated_at: 2014-11-21 21:32:55
-  approval_status: -1
   operating_system: valid_x64

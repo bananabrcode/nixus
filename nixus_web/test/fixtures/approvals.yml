@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+approved01:
   status: 1
-  approvable_id: 
+  approvable: valid_sample (ClientApplication)
 
-two:
+approved02:
   status: 1
-  approvable_id: 
+  approvable: approved_client (ClientApplication)
+
+pending01:
+  status: 0
+  approvable: pending_client (ClientApplication)
+
+unapproved01:
+  status: -1
+  approvable: unapproved_client (ClientApplication)

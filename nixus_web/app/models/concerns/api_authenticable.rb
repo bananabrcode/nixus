@@ -5,10 +5,10 @@ module ApiAuthenticable
 	
 	included do
 		#associations
-		has_one :api_credential, as: :api_authenticable
+		has_one :api_credential, as: :api_authenticable, dependent: :destroy
 
 		#callbacks
-		after_save :create_api_credential, on: :create
+		after_create :create_api_credential
 		after_rollback :destroy_api_credential, on: :create
 	end
 	

@@ -1,0 +1,30 @@
+<h1><%= t('.header') %></h1>
+<table class="asset_list_table">
+  <th><%= t('.asset_list_table.headers.hostname') %></th>
+  <th><%= t('.asset_list_table.headers.operating_system') %></th>
+  <th><%= t('.asset_list_table.headers.api_id') %></th>
+  <th><%= t('.asset_list_table.headers.approval.status') %></th>
+  <th/>
+  <th/>
+  <th/>
+  <% @client_applications.each do |ca|%>
+  <tr>
+    <td><%= ca.hostname %></td>
+    <td><%= ca.operating_system.display_name unless ca.operating_system.nil? %></td>
+    <td><%= ca.api_credential.api_id %></td>
+    <td><%= get_readable_status ca.approval.status %></td>
+    <td>
+	<% if ca.pending? %>
+          <%= link_to t('.approve'), approve_client_application_approval_path(ca) %> | 
+	  <%= link_to t('.refuse'), refuse_client_application_approval_path(ca) %>
+	<%end%>
+    </td>
+    <td><%= link_to t('.edit'), edit_client_application_path(ca) %></td>
+    <td><%= link_to t('.destroy'), client_application_path(ca),
+        :method => :delete,
+        :data => {:confirm => t('dialogs.destroy')} %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to t('.new'), new_client_application_path%>

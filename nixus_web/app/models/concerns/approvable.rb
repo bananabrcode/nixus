@@ -5,20 +5,36 @@ module Approvable
 	
 	included do
 		#associations
-		has_one :approval, as: :approvable
+		has_one :approval, as: :approvable, dependent: :destroy
 
 		#callbacks
-                after_save :create_approval, on: :create
+                after_create :create_approval
                 after_rollback :destroy_approval, on: :create
 
 		#scopes
 		scope :pending, -> {where(id: Approval.pending(self.name).pluck(:approvable_id))}
 		scope :approved, -> {where(id: Approval.approved(self.name).pluck(:approvable_id))}
-		scope :unapproved, -> {where(id: Approval.unapproved(self.name).pluck(:approvable_id))}
+		scope :refused, -> {where(id: Approval.refused(self.name).pluck(:approvable_id))}
 	end
 	
-	def approve()
+	def approve
+                self.approval.update(:status => NixusValidation::ApprovalStatuses::APPROVED)
+        end
+
+	def refuse
+                self.approval.update(:status => NixusValidation::ApprovalStatuses::REFUSED)
+        end
+
+	def approved?
                 self.approval.status == NixusValidation::ApprovalStatuses::APPROVED
+        end
+
+        def pending?
+ 	  self.approval.status == NixusValidation::ApprovalStatuses::PENDING
+        end
+        
+	def refused?
+ 	  self.approval.status == NixusValidation::ApprovalStatuses::REFUSED
         end
 
         private

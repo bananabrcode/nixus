@@ -1,3 +1,5 @@
+require 'nixus_validation'
+
 class Approval < ActiveRecord::Base
 	#associations:
 	belongs_to :approvable, polymorphic: true
@@ -10,7 +12,7 @@ class Approval < ActiveRecord::Base
 	#scopes:
 	scope :approved, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::APPROVED, type) }
 	scope :pending, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::PENDING, type) }
-	scope :unapproved, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::UNAPPROVED, type) }
+	scope :refused, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::REFUSED, type) }
 
 	def initialize()
 		super
@@ -21,8 +23,8 @@ class Approval < ActiveRecord::Base
 		self.status == NixusValidation::ApprovalStatuses::APPROVED
 	end
 	
-	def unapproved?()
-		self.status == NixusValidation::ApprovalStatuses::UNAPPROVED
+	def refused?()
+		self.status == NixusValidation::ApprovalStatuses::REFUSED
 	end
 	
 	def pending?()

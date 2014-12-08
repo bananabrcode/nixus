@@ -18,7 +18,7 @@ class OperatingSystem < ActiveRecord::Base
 	#scopes
 	
 	#associations
-	has_many :client_applications
+	has_many :client_applications, dependent: :restrict_with_error
 	
 	#custom getters
 

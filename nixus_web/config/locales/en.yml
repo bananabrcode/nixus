@@ -22,7 +22,13 @@ en:
       edit: 'Edit'
       destroy: 'Delete'
     index:
+      header: 'Operating Systems'
       destroy: 'Delete'
+      asset_list_table:
+        headers:
+          display_name: 'Display Name'
+          cpe_name: 'CPE Name'
+          cpu_arch: 'CPU Type'
     new:
       header: 'New operating system'
     edit:
@@ -32,7 +38,36 @@ en:
     update:
       success: 'Operating system successfully updated!'
     destroy:
-      success: 'Operating system was successfully deleted!'
+      success: 'Operating system successfully deleted!'
+  client_applications:
+    client_application:
+      edit: 'Edit'
+      destroy: 'Delete'
+    index:
+      header: 'Managed Hosts'
+      destroy: 'delete'
+      approve: 'approve'
+      refuse: 'refuse'
+      asset_list_table:
+        headers:
+          hostname: 'Hostname'
+          operating_system: 'Operating System'
+          api_id: 'API UUID'
+          status: 'Status'
+    new:
+      header: 'New managed host'
+    edit:
+      header: 'Edit managed host'
+    create:
+      success: 'managed host successfully created!'
+    update:
+      success: 'managed host successfully updated!'
+    destroy:
+      success: 'managed host successfully deleted!'
+    approval:
+      #update:
+        #success: 'Successfully approved'
+        #failure: 'The approval failed'
   misc:
     create: 'Create'
     back: 'Return'
@@ -42,6 +77,10 @@ en:
     edit: 'Edit'
     details: 'Details'
     remove: 'Remove'
+    approval_statuses:
+      pending: 'pending'
+      approved: 'approved'
+      refused: 'refused'
   dialogs:
     destroy: 'Are you sure you want to delete?'
   errors:
@@ -55,9 +94,16 @@ en:
     models:
       operating_system: 'operating system'
       client_application: 'client application'
+      approval: 'approval'
+      api_credential: 'api credential'
     attributes:
       operating_system:
         cpu_architecture: 'cpu architecture'
         display_name: 'display name'
         cpe_name: 'cpe name'
-    
+      client_application:
+        hostname: 'hostname'
+      approval:
+        status: 'status'
+      api_credential:
+        api_id: 'api_id'
