@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207175513) do
+ActiveRecord::Schema.define(version: 20141208232112) do
 
   create_table "api_credentials", force: true do |t|
     t.string   "api_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141207175513) do
     t.string   "apid_secret_hash",       limit: 32
   end
 
-  add_index "api_credentials", ["api_id"], name: "index_api_credentials_on_api_id", using: :btree
+  add_index "api_credentials", ["api_id"], name: "index_api_credentials_on_api_id", unique: true, using: :btree
 
   create_table "approvals", force: true do |t|
     t.integer  "status"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20141207175513) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "operating_system_id"
+    t.datetime "made_contact_at"
   end
 
   add_index "client_applications", ["operating_system_id"], name: "index_client_applications_on_operating_system_id", using: :btree
@@ -51,5 +52,15 @@ ActiveRecord::Schema.define(version: 20141207175513) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tasks", force: true do |t|
+    t.string   "type"
+    t.integer  "status"
+    t.integer  "client_application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["client_application_id"], name: "index_tasks_on_client_application_id", using: :btree
 
 end

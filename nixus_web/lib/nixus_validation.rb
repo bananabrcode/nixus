@@ -2,6 +2,12 @@ require 'nixus_api'
 require 'nixus_security'
 
 module NixusValidation
+	module Tasks
+		module Types
+			UPDATE_HOST_INFO='update_host_info'
+		end
+	end
+
 	module ApprovalStatuses
 		APPROVED=1
 		PENDING=0
