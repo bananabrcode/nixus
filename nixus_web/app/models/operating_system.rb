@@ -4,7 +4,11 @@ class OperatingSystem < ActiveRecord::Base
 	#validations
 	validates :cpu_architecture,
 		presence: true,
-		inclusion: {:in => NixusValidation::ValidCpuArchitectures, :message => :inclusion, unless: 'cpu_architecture.blank?'},
+		inclusion: {
+			:in => NixusValidation::ValidCpuArchitectures,
+			:message => :inclusion,
+			unless: 'cpu_architecture.blank?'
+		},
 		uniqueness: {:scope => :cpe_name}
 	#TODO
 	#Inlude cpe_name format validation
@@ -12,7 +16,8 @@ class OperatingSystem < ActiveRecord::Base
 		presence: true,
 		format: {
 			:with => /cpe\:2\.3\:o(\:((((([A-Z_a-z0-9]|(\\(\\|(\?|\*)|(\!|"|#|\$|%|&|'|\(|\)|\+|,|\.|\/|\:|;|\<|\=|\>|@|\[|\]|\^|`|\{|\||\}|~))))([A-Z_a-z0-9]|(\\(\\|(\?|\*)|((\!|"|#|\$|%|&|'|\(|\)|\+|,|\.|\/|\:|;|\<|\=|\>|@|\[|\]|\^|`|\{|\||\}|~)|\-))))*)|([A-Z_a-z0-9]|(\\(\\|(\?|\*)|((\!|"|#|\$|%|&|'|\(|\)|\+|,|\.|\/|\:|;|\<|\=|\>|@|\[|\]|\^|`|\{|\||\}|~)|\-)))){2,})|((\?+|\*)([A-Z_a-z0-9]|(\\(\\|(\?|\*)|((\!|"|#|\$|%|&|'|\(|\)|\+|,|\.|\/|\:|;|\<|\=|\>|@|\[|\]|\^|`|\{|\||\}|~)|\-))))*))(\?+|\*){,1})){10}/, 
-			:message => :invalid, unless: 'cpe_name.blank?'
+			:message => :invalid,
+			unless: 'cpe_name.blank?'
 		}
 	
 	#scopes

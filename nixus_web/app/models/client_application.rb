@@ -5,12 +5,8 @@ class ClientApplication < ActiveRecord::Base
 	include ApiAuthenticable
 	include Approvable
 
-	#validations:
-	#validates :operating_system,
-	#	presence: { message: :blank }
-
 	#associations:
 	belongs_to :operating_system
-
+	has_many :client_application_tasks
 end
 

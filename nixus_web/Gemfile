@@ -37,4 +37,7 @@ gem 'spring',        group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+# Provides the java runtime environment for rails console and server
 gem 'therubyracer'
+# Task scheduler
+#gem 'whenever', :require => false

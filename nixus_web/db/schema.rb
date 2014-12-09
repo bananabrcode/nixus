@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208232112) do
+ActiveRecord::Schema.define(version: 20141209192701) do
 
   create_table "api_credentials", force: true do |t|
     t.string   "api_id"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20141208232112) do
     t.datetime "updated_at"
   end
 
+  create_table "client_application_tasks", force: true do |t|
+    t.string   "task_type"
+    t.integer  "client_application_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "client_application_tasks", ["client_application_id"], name: "index_client_application_tasks_on_client_application_id", using: :btree
+
   create_table "client_applications", force: true do |t|
     t.string   "hostname"
     t.datetime "info_updated_at"
@@ -52,15 +61,5 @@ ActiveRecord::Schema.define(version: 20141208232112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "tasks", force: true do |t|
-    t.string   "type"
-    t.integer  "status"
-    t.integer  "client_application_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "tasks", ["client_application_id"], name: "index_tasks_on_client_application_id", using: :btree
 
 end
