@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+valid_sample_task01:
+  task_type: 
+  client_awareness: 1
+  client_application: valid_sample
+
+pending_client_task01:
+  task_type: 
+  client_awareness: 1
+  client_application_id: pending_client
+
+approved_client_task01:
+  task_type:
+  client_awareness: 1
+  client_application_id: approved_client
+
+unapproved_client_task01:
+  task_type:
+  client_awareness: 1
+  client_application_id: unapproved_client

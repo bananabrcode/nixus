@@ -3,4 +3,5 @@ module NixusClientApplicationTasks
 		UPDATE_HOST_INFO='update_host_info'
 		UPDATE_PACKAGE='update_package'
 	end
+	TypesWithoutParameters=[Types::UPDATE_HOST_INFO]
 end

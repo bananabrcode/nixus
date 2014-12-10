@@ -40,4 +40,4 @@ gem 'spring',        group: :development
 # Provides the java runtime environment for rails console and server
 gem 'therubyracer'
 # Task scheduler
-#gem 'whenever', :require => false
+gem 'whenever', :require => false

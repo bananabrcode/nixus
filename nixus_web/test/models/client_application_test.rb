@@ -15,4 +15,10 @@ class ClientApplicationTest < ActiveSupport::TestCase
 		client_app.approve()
 		assert client_app.approved?, "Approval status did not change after approval"
 	end
+
+	test "Dependent models should be destroyed" do
+		ClientApplication.destroy_all
+		assert_equal Approval.all.count,0,"Some approvals are still present even after destroying all clients"
+		assert_equal ApiCredential.all.count,0,"Some API credentials are still present even after destroying all clients"
+	end
 end

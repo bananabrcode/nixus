@@ -25,8 +25,6 @@ class OperatingSystem < ActiveRecord::Base
 	#associations
 	has_many :client_applications, dependent: :restrict_with_error
 	
-	#custom getters
-
 	#custom setters
 	def cpu_architecture=(arch)
 		write_attribute(:cpu_architecture, arch.downcase)

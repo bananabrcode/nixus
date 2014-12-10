@@ -14,11 +14,9 @@ class Approval < ActiveRecord::Base
 	scope :pending, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::PENDING, type) }
 	scope :refused, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::REFUSED, type) }
 
-	def initialize()
-		super
-		self.status ||= NixusValidation::ApprovalStatuses::PENDING
-	end
-	
+	#callbacks
+	after_initialize :set_defaults
+
 	def approved?()
 		self.status == NixusValidation::ApprovalStatuses::APPROVED
 	end
@@ -31,4 +29,8 @@ class Approval < ActiveRecord::Base
 		self.status == NixusValidation::ApprovalStatuses::PENDING
 	end
 
+	private
+	def set_defaults()
+		self.status ||= NixusValidation::ApprovalStatuses::PENDING
+	end
 end

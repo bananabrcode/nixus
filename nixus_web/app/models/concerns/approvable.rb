@@ -17,23 +17,23 @@ module Approvable
 		scope :refused, -> {where(id: Approval.refused(self.name).pluck(:approvable_id))}
 	end
 	
-	def approve
+	def approve()
                 self.approval.update(:status => NixusValidation::ApprovalStatuses::APPROVED)
         end
 
-	def refuse
+	def refuse()
                 self.approval.update(:status => NixusValidation::ApprovalStatuses::REFUSED)
         end
 
-	def approved?
+	def approved?()
                 self.approval.status == NixusValidation::ApprovalStatuses::APPROVED
         end
 
-        def pending?
+        def pending?()
  	  self.approval.status == NixusValidation::ApprovalStatuses::PENDING
         end
         
-	def refused?
+	def refused?()
  	  self.approval.status == NixusValidation::ApprovalStatuses::REFUSED
         end
 

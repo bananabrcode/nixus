@@ -4,9 +4,11 @@ class ClientApplication < ActiveRecord::Base
 	#INCLUSIONS & EXTENSIONS
 	include ApiAuthenticable
 	include Approvable
+	include GenericScopes
 
 	#associations:
 	belongs_to :operating_system
-	has_many :client_application_tasks
+	has_many :tasks
+
 end
 
