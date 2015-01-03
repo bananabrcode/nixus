@@ -12,9 +12,14 @@ module ApiAuthenticable
 		after_rollback :destroy_api_credential, on: :create
 	end
 	
-	def authenticate(id, secret)
-		return false unless self.api_id == id
-		self.api_credential.validate(id, secret)
+	def authenticate(secret)
+		self.api_credential.validate_secret(secret)
+	end
+
+	module ClassMethods
+		def find_by_api_id(api_id)
+			self.joins(:api_credential).where("api_credentials.api_id = ?", api_id)
+		end
 	end
 	
 	private

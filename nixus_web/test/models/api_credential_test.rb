@@ -42,16 +42,16 @@ class ApiCredentialTest < ActiveSupport::TestCase
 		assert_not api_cred.save, "api_secret_hash was tampered and commited to database"
 	end
 
-	test "the validate method should return true for a valid api_id x api_secret pair" do
+	test "the validate_secret method should return true for a valid api_id x api_secret pair" do
 		api_cred = ApiCredential.new()
-		api_secret = api_cred.set_api_secret()
-		assert_equal api_cred.validate(api_cred.api_id,api_secret), true, "the validate method did not return true for a valid api_id x api_secret pair" 
+		secret = api_cred.set_api_secret()
+		assert_equal api_cred.validate_secret(secret), true, "the validate_secret method did not return true for a valid api_id x api_secret pair" 
 	end
 	
-	test "the validate method should return false for an invalid api_id x api_secret pair" do
+	test "the validate_secret method should return false for an invalid api_id x api_secret pair" do
 		api_cred = ApiCredential.new()
-		api_secret = api_cred.set_api_secret()
-		assert_equal api_cred.validate(api_cred.api_id,api_secret.reverse), false, "the validate method did not return true for a valid api_id x api_secret pair" 
+		secret = api_cred.set_api_secret()
+		assert_equal api_cred.validate_secret(secret.reverse), false, "the validate_secret method did not return true for a valid api_id x api_secret pair" 
 	end
 	#TODO:
 	#Include reference check to api_authenticable

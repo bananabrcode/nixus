@@ -8,6 +8,8 @@ class Approval < ActiveRecord::Base
 	validates :status,
 		presence: true,
 		inclusion: { :in => NixusValidation::ValidApprovalStatuses, :message => :inclusion, unless: 'status.blank?' }
+	validates :approvable_id,
+		uniqueness: true
 
 	#scopes:
 	scope :approved, ->(type) { where("status = ? AND approvable_type = ?", NixusValidation::ApprovalStatuses::APPROVED, type) }
@@ -17,20 +19,22 @@ class Approval < ActiveRecord::Base
 	#callbacks
 	after_initialize :set_defaults
 
-	def approved?()
+	#methods
+	
+	def approved?
 		self.status == NixusValidation::ApprovalStatuses::APPROVED
 	end
 	
-	def refused?()
+	def refused?
 		self.status == NixusValidation::ApprovalStatuses::REFUSED
 	end
 	
-	def pending?()
+	def pending?
 		self.status == NixusValidation::ApprovalStatuses::PENDING
 	end
 
 	private
-	def set_defaults()
+	def set_defaults
 		self.status ||= NixusValidation::ApprovalStatuses::PENDING
 	end
 end

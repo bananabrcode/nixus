@@ -2,8 +2,6 @@ require 'nixus_api'
 require 'nixus_security'
 
 class ApiCredential < ActiveRecord::Base
-	#INCLUSIONS & EXTENSIONS
-	#CLASS MACROS
 	#validations:
 	validate :api_id_cannot_be_changed, on: :update
 	validate :api_secret_hash_cannot_be_changed, on: :update
@@ -20,32 +18,33 @@ class ApiCredential < ActiveRecord::Base
 
         validates :api_secret_hash,
 		length: { :is => NixusAPI::SECRET_HASH_SIZE, unless: 'api_secret_hash.blank?' }
-	#scopes:
 	#callbacks:
+	after_initialize :set_api_id
 	#associations:
 	belongs_to :api_authenticable, polymorphic: true
-	#INSTANCE METHODS
-        #methods:
-        def initialize()
-		super
-		set_api_id()
-	end
 
-        def set_api_secret()
+        #methods:
+        
+        def set_api_secret
 		return nil unless self.api_secret_hash.blank?
                 api_secret = NixusAPI::generate_new_secret()
-                self.api_secret_hash = NixusSecurity::MD5.generate("#{self.api_id}#{api_secret}")
-                api_secret
+                if self.update_attribute(:api_secret_hash, NixusAPI::get_secret_hash(self.api_id, api_secret))
+	                return api_secret
+		else
+			return nil
+		end
         end
-
-	def validate(id, secret)
-		return false unless id == self.api_id
-		self.api_secret_hash == NixusSecurity::MD5.generate("#{id}#{secret}")
+	
+	def validate_secret(secret)
+		self.api_secret_hash == NixusAPI::get_secret_hash(self.api_id, secret)
 	end
 
         private
-        def set_api_id()
-                self.api_id ||= NixusAPI::generate_new_id()
+        def set_api_id
+		begin
+			id = NixusAPI::generate_new_id()
+		end while self.class.exists?(api_id: id)
+                self.api_id ||= id
         end
 
         def api_id_cannot_be_changed()

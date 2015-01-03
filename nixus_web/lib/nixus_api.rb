@@ -12,4 +12,8 @@ module NixusAPI
 	def self.generate_new_secret()
 		NixusSecurity::RandomString.generate(SECRET_SIZE)
 	end
+
+	def self.get_secret_hash(id, secret)
+		NixusSecurity::MD5.generate("#{id}#{secret}")
+	end
 end
