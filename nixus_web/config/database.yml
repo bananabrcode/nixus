@@ -15,8 +15,7 @@ default: &default
   pool: 5
   host: 'localhost'
   username: 'nixus_web'
-  #password: <%= ENV['NIXUS_WEB_DATABASE_PASSWORD'] %>
-  password: 'db_P4ssW0rd'
+  password: <%= ENV['NIXUS_WEB_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
