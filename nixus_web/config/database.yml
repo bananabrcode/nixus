@@ -13,9 +13,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: nixus_web
+  host: 'localhost'
+  username: 'nixus_web'
   password: <%= ENV['NIXUS_WEB_DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
 
 development:
   <<: *default
