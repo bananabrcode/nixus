@@ -14,3 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+#ignore vim temp files
+*~
+*.swp
+*.swo
+
+#ignore dotenv .env file
+/.env
