@@ -2,6 +2,7 @@ module Api
 	module V1
 		class ApiController < ApplicationController
 			respond_to :json
+			skip_before_filter :protect_from_forgery
 			before_action :identify
 
 			private
@@ -29,7 +30,11 @@ module Api
 					head status: :unauthorized
 					return false	
 				end
-				current_api_client.api_credential.validate_secret(secret)
+				@api_client.api_credential.validate_secret(secret)
+			end
+
+			def check_approval
+				@api_client.approved?
 			end
 		end
 	end

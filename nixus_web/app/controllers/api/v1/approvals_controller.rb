@@ -4,7 +4,9 @@ module Api
 			before_action :set_approval, only: [:show]
 
 			def show
-				@secret = @api_client.api_credential.set_api_secret if @api_client.approved?
+				if @api_client.approved?
+					@secret = @api_client.api_credential.set_api_secret
+				end
 			end
 
 			private 
